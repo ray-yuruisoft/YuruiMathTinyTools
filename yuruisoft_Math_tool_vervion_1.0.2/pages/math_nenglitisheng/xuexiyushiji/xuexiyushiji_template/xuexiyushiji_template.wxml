@@ -1,0 +1,21 @@
+<view class = "txt_container" style = "display:{{view_txt_show ? 'block':'none'}}">
+    <text>{{txt_data}}</text>
+</view>
+<view style = "text-align:center; display:{{view_gongshi_show ? 'block':'none'}}">
+    <image style = "height:{{windowHeight}}px" class = "image_" src="{{url_gongshi}}" mode="aspectFit" ></image>
+</view>
+
+<view style = "text-align:center; display:{{view_daizhi_zuo_show ? 'block':'none'}}">
+    <image style = "height:{{windowHeight}}px" class = "image_" src="{{url_daizhi_left}}" mode="aspectFit" ></image>
+</view>
+
+<view style = "text-align:center; display:{{view_daizhi_you_show ? 'block':'none'}}">
+    <image style = "height:{{windowHeight}}px" class = "image_" src="{{url_daizhi_right}}" mode="aspectFit" ></image>
+</view>
+
+<view class = "button_group">
+    <view bindtap="daizhi"  hover = "true" hover-class="button_hover" class = "button">代值{{daizhi}}</view>
+    <view bindtap="gongshi" hover = "true" hover-class="button_hover" class = "button">流程图</view>
+    <view bindtap="wenzi"   hover = "true" hover-class="button_hover" class = "button">文字说明</view>
+    <view bindtap="SJ_CZ"   hover = "true" hover-class="button_hover" class = "button">实际操作</view>
+</view>

@@ -1,0 +1,57 @@
+page{
+    height:100%;
+    min-height:100%;
+    background: #e9e4d9;
+    color:black;
+    font-family:"Microsoft Yahei","宋体";
+    font-size:14px;
+}
+.message__list{
+  background-color: white;
+  margin: 20rpx 0; 
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 50rpx;
+  padding-right: 15rpx;
+}
+.image{
+    width:  55rpx; 
+    height: 50rpx;
+}
+.item-middle{
+    flex: 1;
+    overflow: hidden;
+}
+.item_right{
+    padding-top: 20rpx;
+    overflow: hidden; 
+}
+.item_right_switch{
+    padding-top: 10rpx;
+    overflow: hidden; 
+}
+.line{
+    height: 1px;
+    width:93%;
+    background-color: #d1d1cf;
+    margin-left: 30rpx;
+}
+.tree_image_right{
+    right: 15rpx;
+    width: 50rpx; 
+    height: 50rpx;
+}
+switch_right_container{
+    padding-top:20rpx;
+}
+.item_juzhong{
+    margin: 25rpx;
+}
+.line_btween{
+    height: 50rpx;
+    width: 100%;
+    background-color: #e9e4d9;
+}

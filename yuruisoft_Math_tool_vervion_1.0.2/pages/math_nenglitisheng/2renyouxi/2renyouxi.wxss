@@ -1,0 +1,76 @@
+@import "../../../utils/template/result_2player.wxss";
+page{
+    height:100%;
+    min-height:100%;
+    background: #e9e4d9;
+    color:black;
+    font-family:"Microsoft Yahei","宋体";
+    font-size:14px;
+}
+.container-nengli{
+display: flex;
+flex-direction: column;
+height: 100%;
+width: 100%;
+
+}
+.transform{
+    transform:rotate(180deg);
+}
+.player{
+    width: 100%;
+    height: 49%;
+    display: flex;
+    flex-direction: column;
+}
+.middle_line{
+    background-color: gray;
+    height: 2%;
+    width: 100%;
+}
+.button{
+    width: 50%;
+    line-height: 150%;
+    text-align: center;
+    margin: -20rpx 20rpx 20rpx 20rpx;
+    border-radius: 15rpx;
+}
+.button_container{
+    text-align:center;
+    position:relative;
+}
+.button_center{
+    width: 80%;
+    margin: auto;  
+    display: flex;
+}
+.text{
+    height: 35%;
+    text-align: center;
+    font-size: 80rpx;
+}
+.countof{
+    height: 25%;
+    text-align: center;
+    font-size: 80rpx;
+}
+.blue{
+    background-color: rgba(46,177,231,0.9);
+}
+.red{
+    background-color: rgba(255,78,87,0.9);
+}
+.lightblue{
+    background-color: rgba(46,177,231,0.5);
+}
+.orange{
+    background-color: rgba(143,202,255,0.5);
+}
+.font{
+    font-size: 500%;
+    color: white;
+}
+.button_hover{
+    background-color: gray;
+    border: 1rpx solid black;
+}

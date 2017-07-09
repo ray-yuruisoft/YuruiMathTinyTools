@@ -1,0 +1,23 @@
+page{
+    height:100%;
+    min-height:100%;
+    background: #e9e4d9;
+    color:black;
+    font-family:"Microsoft Yahei","宋体";
+    font-size:35rpx;
+}
+.input{
+    border: 1rpx black solid;
+    margin: 20rpx;
+}
+.title{
+    margin: 20rpx;
+}
+.body{
+    display: flex;
+    flex-direction: row;
+    margin: 20rpx;
+}
+.text{
+    margin-top: 20rpx;
+}

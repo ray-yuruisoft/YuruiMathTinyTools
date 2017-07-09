@@ -1,0 +1,25 @@
+<view class = "_container">
+    <image mode="aspectFit" class = "_image" src="{{images_url}}"></image>
+<view class = "_line">
+    <text class ="_text">x1:</text>
+    <input type = "digit" value = "{{_x1_value}}" bindinput="_x1_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">y1:</text>
+    <input type = "digit" value = "{{_y1_value}}" bindinput="_y1_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">x2:</text>
+    <input type = "digit" value = "{{_x2_value}}" bindinput="_x2_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">y2:</text>
+    <input type = "digit" value = "{{_y2_value}}" bindinput="_y2_value" class ="_input" />
+</view>
+
+<button hover-class = "button_hover" class = "button"  size="default"  bindtap="click_jisuan" type="default">计  算</button>
+<view class = "_line">
+    <text>两点之间的距离\n d={{result}}</text>
+</view >
+    <text style = "opacity:{{error? 1: 0}}" >你的输入不正确！</text>
+</view>

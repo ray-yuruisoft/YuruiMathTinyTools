@@ -1,0 +1,37 @@
+<view class = "_container">
+    <image mode="aspectFit" class = "_image" src="{{images_url}}"></image>
+<view class = "_line">
+    <text class ="_text">a1:</text>
+    <input type = "digit" value = "{{_a1_value}}" bindinput="_a1_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">b1:</text>
+    <input type = "digit" value = "{{_b1_value}}" bindinput="_b1_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">c1:</text>
+    <input type = "digit" value = "{{_c1_value}}" bindinput="_c1_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">a2:</text>
+    <input type = "digit" value = "{{_a2_value}}" bindinput="_a2_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">b2:</text>
+    <input type = "digit" value = "{{_b2_value}}" bindinput="_b2_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">c2:</text>
+    <input type = "digit" value = "{{_c2_value}}" bindinput="_c2_value" class ="_input" />
+</view>
+    <button hover-class = "button_hover" class = "button"  size="default"  bindtap="click_jisuan" type="default">计  算</button>
+<view class = "_line">
+    <text>x=</text>
+    <view>{{result_1}}</view>
+</view >
+<view class = "_line">
+    <text>y=</text>
+    <view>{{result_2}}</view>
+</view >
+    <text style = "opacity:{{error? 1: 0}}" >你的输入不正确！</text>
+</view>

@@ -1,0 +1,52 @@
+page{
+    height:100%;
+    min-height:100%;
+    background: #e9e4d9;
+    color:black;
+    font-family:"Microsoft Yahei","宋体";
+}
+.title{
+    color:black;
+    font-family:"Microsoft Yahei","宋体";
+    font-size:50rpx;
+}
+.content{
+    position:relative;
+    padding-left:20rpx;
+    padding-right:20rpx;
+    height:100%;
+}
+.list-item{
+    height:145rpx;
+    vertical-align: middle;
+    margin-top:25rpx;
+    border-radius: 15rpx;
+    border: 1rpx solid black;
+    background-color: rgba(143,202,255,0.9); 
+}
+.list_item_hover{
+    background-color: gray;
+}
+.life-title{
+    font-size:40rpx;
+    padding-bottom:15rpx;
+}
+.life-des-container{
+    display:inline-block;
+    padding-left: 25rpx;
+    padding-top: 25rpx;
+}
+.life-des{
+    font-size:12px;
+}
+.image_back_ground{
+    width: 0rpx;
+    height: 0rpx;
+}
+.main-bg{
+    width:100%;
+    position:absolute;
+    top:80rpx;
+    left:0;
+    z-index:-2;
+}

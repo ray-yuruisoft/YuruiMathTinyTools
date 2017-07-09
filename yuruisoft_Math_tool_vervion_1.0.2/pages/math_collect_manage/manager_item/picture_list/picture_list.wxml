@@ -1,0 +1,38 @@
+<view class = "image_title"> 
+    <view bindtap = "delete_showModal" class = "_image_container" hover = "true" hover-class="image_hove">
+        <image class = "_image" src="/images/delete.png"></image>
+    </view>
+    <view bindtap = "clear_all_showModal" class ="_image_container" hover = "true" hover-class="image_hove">
+        <image class = "_image" src="/images/clear_all.png"></image>  
+    </view>
+</view>
+<checkbox-group bindchange="checkboxChange">
+    <label class = "checkbox" wx:for="{{fileList_Data}}" wx:key="{{index}}">     
+        <view class = "container_"> 
+              <view class = "choose_item">
+                    <checkbox checked="{{checked_set}}" value="{{item.filePath}}" class = "check_box" style = "opacity:0"></checkbox>
+                </view>
+                <view  style ="background-color:{{item.box_checked ? 'gray':''}}"  class="item" bindtap="bindtap{{index}}">
+                    <view class="item_name">
+                        <text>网络地址:</text>
+                            <text class="item_position_data">\n{{item.url_name}}</text>
+                    </view>
+                    <view class ="line"></view>
+                    <view class="item_size">
+                            <text>尺寸:{{item.size}}B</text>
+                    </view>
+                    <view class ="line"></view>
+                    <view class="item_create_time">
+                            <text>创建时间:{{item.chang_time.year}}年{{item.chang_time.month}}月{{item.chang_time.day}}日{{item.chang_time.hour}}时{{item.chang_time.minute}}分{{item.chang_time.second}}秒</text>
+                    </view>
+                    <view class ="line"></view>
+                    <view class="item_position">
+                            <text>存储位置:</text>
+                            <text class="item_position_data">\n{{item.filePath}}</text>
+                    </view>
+                </view> 
+        </view>       
+    </label>
+</checkbox-group>
+
+

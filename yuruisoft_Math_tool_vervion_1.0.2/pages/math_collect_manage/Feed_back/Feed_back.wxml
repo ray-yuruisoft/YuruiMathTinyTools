@@ -1,0 +1,5 @@
+<view class="section">
+  <textarea bindconfirm = "confirm" value = "{{Area_text}}" bindblur="bindTextAreaBlur" auto-height placeholder="请在这里输入留言" />
+</view>
+<button bindtap="submit" hover-class="button_hover" class = "button">提交留言</button>
+<button bindtap="clear" class = "button_replay">重新填写</button>
