@@ -29,13 +29,15 @@ function req(url, data, cb) {//Post请求
   })
 }
 
-function reqGet(url, data, cb) {//Get请求
+function reqPOST(url, data, cb) {//Get请求
   wx.request({
-    url: getApp().data.servsers + url,
+    //url: getApp().data.servsers + url,
+    url: "http://localhost:4943" + url,
     data : data,
-    method:'GET',
+    method:'POST',
     header: {
-      'content-type': 'application/json'
+      'content-type': 'application/json',
+      'yuruisoft': 'www.yuruisoft.com'
     },
     success: function (res) {
       return typeof cb == "function" && cb(res.data)
@@ -49,5 +51,5 @@ function reqGet(url, data, cb) {//Get请求
 module.exports = {
   formatTime: formatTime,   //时间格式化
   req: req,                 //Post请求
-  reqGet: reqGet            //Get请求
+  reqPOST: reqPOST            //Get请求
 }

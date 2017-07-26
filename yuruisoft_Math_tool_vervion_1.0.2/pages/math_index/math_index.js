@@ -92,47 +92,47 @@ wxSearchFn: function(e){
   },
   bindtap0:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"jihe"
+                  url:"/pages/math_index/formula/formula?id=几何"
                 });
   },
   bindtap1:function(){
           wx.navigateTo({
-                    url:getApp().data.navigateTo_formula+"daishu"
+            url:"/pages/math_index/formula/formula?id=代数"
                   })
   },
   bindtap2:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"sanjiaoxue"
+          url:"/pages/math_index/formula/formula?id=三角学"
                 })
   },
   bindtap3:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"fangcheng"
+          url:"/pages/math_index/formula/formula?id=方程"
                 })
   },
   bindtap4:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"jiexijihe"
+          url:"/pages/math_index/formula/formula?id=解析几何"
                 })
   },
   bindtap5:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"daoshu"
+          url:"/pages/math_index/formula/formula?id=导数"
                 })
   },
   bindtap6:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"jifeng"
+          url:"/pages/math_index/formula/formula?id=积分"
                 })
   },
   bindtap7:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"juzheng"
+          url:"/pages/math_index/formula/formula?id=矩阵"
                 })
   },
   bindtap8:function(){
         wx.navigateTo({
-                  url:getApp().data.navigateTo_formula+"gailvhetongjixue"
+          url:"/pages/math_index/formula/formula?id=概率和统计学"
                 })
   },
   onLoad:function(options){
@@ -146,12 +146,6 @@ wxSearchFn: function(e){
                 that.setData({
                 user_info_local:getApp().globalData.user_info
               })
-            },
-            fail: function(res) {
-              // fail
-            },
-            complete: function(res) {
-              // complete
             }
           })
     WxSearch.init(that,63,getApp().globalData.changyong_Search_key,getApp().globalData.isShowKey,getApp().globalData.isShowHis);

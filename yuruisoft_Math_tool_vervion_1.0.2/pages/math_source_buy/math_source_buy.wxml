@@ -26,11 +26,11 @@ http://blog.csdn.net/sinat_31177681/article/details/53557642
   <view class="weui-panel__bd">
     <navigator url="../math_source_buy/detail/detail?id={{id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
       <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-        <image class="weui-media-box__thumb" src="{{src}}" style="width: 60px; height: 60px;" />
+        <image class="weui-media-box__thumb" src="{{SBTitleImage}}" style="width: 60px; height: 60px;" />
       </view>
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title">{{title}}</view>
-        <view class="weui-media-box__desc">{{time}}</view>
+        <view class="weui-media-box__title">{{SBTitle}}</view>
+        <view class="weui-media-box__desc">{{ModiyTime}}</view>
       </view>
     </navigator>
   </view>

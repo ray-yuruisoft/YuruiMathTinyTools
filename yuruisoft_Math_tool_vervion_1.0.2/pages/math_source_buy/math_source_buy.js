@@ -17,7 +17,7 @@ var loadMsgData = function (that) {
 
   // 获取上一页数据  
   var allMsg = that.data.msgList;
-  app.ajax.req('/itdragon/findAll', {
+  app.ajax.reqPOST('/Mathtool/SourceBuyList', {
     "page": pageNum,
     "pageSize": 6,
     "search_LIKE_title": searchTitle

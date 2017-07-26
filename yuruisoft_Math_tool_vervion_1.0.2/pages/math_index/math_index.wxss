@@ -1,4 +1,4 @@
-@import "../../utils/wxSearch.wxss";
+@import "../../utils/IndexSearchInput/wxSearch.wxss";
 .container{
 display: block;
 background-color: white;

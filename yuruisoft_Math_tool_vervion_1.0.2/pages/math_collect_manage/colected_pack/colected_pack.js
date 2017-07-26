@@ -10,12 +10,6 @@ Page({
         that.setData({
           colected_image_Data :res.data
         })
-      },
-      fail: function(res) {
-        // fail
-      },
-      complete: function(res) {
-        // complete
       }
     })
   },

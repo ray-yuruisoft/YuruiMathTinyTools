@@ -1,3 +1,4 @@
+var app = getApp();
 var time = require("../../../utils/current_time.js")
 Page({
   data:{},
@@ -14,22 +15,18 @@ var that= this;
 wx.getStorage({
                         key: 'rd_session',
                         success: function(res) {
-                             wx.request({
-                               url: getApp().data.servsers +'/score_query.ashx',
-                                data: {
-                                    rd_session:res.data
-                                },
-                                method: 'GET', 
-                                success: function(res){
-                                    that.setData({
-                                      score:res.data
-                                    })                                
-                                },
-                                fail:function(res)
-                                {
 
-                                }                               
-                                })
+                          app.ajax.reqPOST('/Mathtool/ScoreQuery', {
+                            "yuruisoft_session": res.data
+                          }, function (res) {
+                            if (!res) {
+                              console.log("失败！")
+                              return
+                            }
+                            that.setData({
+                              score: res.score
+                            })  
+                          });
                         } 
                 })
   },

@@ -191,27 +191,17 @@ Page({
     var that = this;
     this.setData({ formulaID: options.id });
     wx.showNavigationBarLoading(); //在标题栏中显示加载
-
-    //判断请求页面类型
-    if (options.name == 'Search_index') {//搜索页面
-
-      app.ajax.reqGet('/Search_deal.ashx', {
-        "search_data": options.id
+    
+    app.ajax.reqPOST('/Mathtool/Searchdeal', {
+        "Searchdata": options.id
       }, function (res) {
+        if(!res)
+        {
+          console.log("失败！")
+          return
+        }       
         that.LoadPage(that, res); //请求数据完成后，加载页面
       });
-
-    }
-    else {//公式页面请求
-
-      app.ajax.reqGet('/formula.ashx', {
-        "x": options.id,
-        "y": options.name
-      }, function (res) {
-        that.LoadPage(that, res); //请求数据完成后，加载页面
-      });
-
-    }
   },
 
   //请求数据完成后，加载页面

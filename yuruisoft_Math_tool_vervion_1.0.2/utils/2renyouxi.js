@@ -1,3 +1,5 @@
+var http = require('commonUtil.js')
+
 var time_id_player_1,time_id_player_2
 function time_ctrl(that,time_ctrl_player){
     var time_percent = that.data[time_ctrl_player];
@@ -71,47 +73,28 @@ function game_over(that){
                     wx.getStorage({
                         key: 'rd_session',
                         success: function(res) {
-                             wx.request({
-                                url: getApp().data.servsers +'/math_score.ashx',
-                                data: {
-                                    score : '-1',
-                                    rd_session:res.data
-                                },
-                                method: 'GET', 
-                                success: function(res){
-                                    if(res.data == 'OK')
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新成功',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }
-                                    else
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }                                   
-                                },
-                                fail:function(res)
-                                {
-                                    wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                }                               
-                                })
+                          http.reqPOST('/Mathtool/AbilityScoredeal', {
+                            "score": '-1',
+                            "yuruisoft_session": res.data
+                          }, function (res) {
+                            if (res.UpdateDB == true)
+                            {
+                              wx.hideToast();
+                              wx.showToast({
+                                title: '服务器更新成功',
+                                icon: 'success',
+                                duration: 1000
+                              })
+                            }
+                            wx.hideToast();
+                            wx.showToast({
+                              title: '服务器更新成功',
+                              icon: 'success',
+                              duration: 1000
+                            })                            
+                          });
                         } 
-                        })
-               
-
+                        })               
                 }
     }
     else{
@@ -129,43 +112,25 @@ function game_over(that){
                     wx.getStorage({
                         key: 'rd_session',
                         success: function(res) {
-                             wx.request({
-                                url: getApp().data.servsers +'/math_score.ashx',
-                                data: {
-                                    score : '-1',
-                                    rd_session:res.data
-                                },
-                                method: 'GET', 
-                                success: function(res){
-                                    if(res.data == 'OK')
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新成功',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }
-                                    else
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }                                   
-                                },
-                                fail:function(res)
-                                {
-                                    wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                }                               
-                                })
+                          http.reqPOST('/Mathtool/AbilityScoredeal', {
+                            "score": '-1',
+                            "yuruisoft_session": res.data
+                          }, function (res) {
+                            if (res.UpdateDB == true) {
+                              wx.hideToast();
+                              wx.showToast({
+                                title: '服务器更新成功',
+                                icon: 'success',
+                                duration: 1000
+                              })
+                            }
+                            wx.hideToast();
+                            wx.showToast({
+                              title: '服务器更新成功',
+                              icon: 'success',
+                              duration: 1000
+                            })
+                          });
                         } 
                         })
                 }
@@ -184,43 +149,25 @@ function game_over(that){
                     wx.getStorage({
                         key: 'rd_session',
                         success: function(res) {
-                             wx.request({
-                                url: getApp().data.servsers +'/math_score.ashx',
-                                data: {
-                                    score : '1',
-                                    rd_session:res.data
-                                },
-                                method: 'GET', 
-                                success: function(res){
-                                    if(res.data == 'OK')
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新成功',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }
-                                    else
-                                    {
-                                        wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                    }                                   
-                                },
-                                fail:function(res)
-                                {
-                                    wx.hideToast();
-                                        wx.showToast({
-                                            title: '服务器更新失败',
-                                            icon: 'success',
-                                            duration: 1000
-                                            })
-                                }                               
-                                })
+                          http.reqPOST('/Mathtool/AbilityScoredeal', {
+                            "score": '1',
+                            "yuruisoft_session": res.data
+                          }, function (res) {
+                            if (res.UpdateDB == true) {
+                              wx.hideToast();
+                              wx.showToast({
+                                title: '服务器更新成功',
+                                icon: 'success',
+                                duration: 1000
+                              })
+                            }
+                            wx.hideToast();
+                            wx.showToast({
+                              title: '服务器更新成功',
+                              icon: 'success',
+                              duration: 1000
+                            })
+                          });
                         } 
                         })
                 }

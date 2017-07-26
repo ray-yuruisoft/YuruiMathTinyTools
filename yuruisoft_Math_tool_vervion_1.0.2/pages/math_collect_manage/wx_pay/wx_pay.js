@@ -1,4 +1,7 @@
 var rpn = require("../../../utils/fudianshu_bug.js")
+
+var app = getApp();
+
 Page({
   data:{},
   pay_button:function(){
@@ -7,40 +10,78 @@ Page({
         var total_fee = Math.floor(rpn.mul(this.data._r_value,100));
                       wx.getStorage({
                       key: 'rd_session',
-                      success: function(res){                   
-                          wx.request({                            
-                              url: getApp().data.servsers+"/weixin_pay.ashx",
-                              data: {
-                                rd_session:res.data,
-                                total_fee:total_fee.toString(),
-                                wx_body:'support'
-                                    },
-                                    method: 'GET', 
-                                    success: function(res){
-                                      wx.requestPayment({
-                                        timeStamp: res.data.timeStamp,
-                                        nonceStr: res.data.nonceStr,
-                                        package: res.data.package,
-                                        signType: 'MD5',
-                                        paySign: res.data.paySign,
-                                        success: function(res){
-                                          // success
-                                        },
-                                        fail: function(res) {
-                                          // fail
-                                        },
-                                        complete: function(res) {
-                                          // complete
-                                        }
-                                      })
-                                    },
-                                    fail: function(res) {
-                                      // fail
-                                    },
-                                    complete: function(res) {
-                                      // complete
-                                    }
-                                  })
+                      success: function(res){   
+
+
+                        app.ajax.reqPOST('/Mathtool/Wxpaydeal', {
+                          "yuruisoft_seesion": res.data,
+                          "total_fee": total_fee.toString(),
+                          "wx_body": 'support'
+                        }, function (res) {
+                          if (!res) {
+                            console.log("失败！")
+                            return
+                          }
+                            wx.requestPayment({
+                              timeStamp: res.timeStamp,
+                              nonceStr: res.nonceStr,
+                              package: res.package,
+                              signType: 'MD5',
+                              paySign: res.paySign,
+                              success: function (res) {
+                                // success
+                              },
+                              fail: function (res) {
+                                // fail
+                              },
+                              complete: function (res) {
+                                // complete
+                              }
+                            });
+                          }                    
+                        )
+
+
+
+                          // wx.request({                            
+                          //     url: getApp().data.servsers+"/weixin_pay.ashx",
+                          //     data: {
+                          //       rd_session:res.data,
+                          //       total_fee:total_fee.toString(),
+                          //       wx_body:'support'
+                          //           },
+                          //           method: 'GET', 
+                          //           success: function(res){
+                          //             wx.requestPayment({
+                          //               timeStamp: res.data.timeStamp,
+                          //               nonceStr: res.data.nonceStr,
+                          //               package: res.data.package,
+                          //               signType: 'MD5',
+                          //               paySign: res.data.paySign,
+                          //               success: function(res){
+                          //                 // success
+                          //               },
+                          //               fail: function(res) {
+                          //                 // fail
+                          //               },
+                          //               complete: function(res) {
+                          //                 // complete
+                          //               }
+                          //             })
+                          //           },
+                          //           fail: function(res) {
+                          //             // fail
+                          //           },
+                          //           complete: function(res) {
+                          //             // complete
+                          //           }
+                          //         })
+
+
+
+
+
+
                       },
                       fail: function(res) {
                       

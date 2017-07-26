@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
   data:{
      load_data:{
@@ -106,28 +107,25 @@ wenzi:function(){
       icon: 'loading',
       duration: 10000
     })
-   wx.request({
-     url: getApp().data.servsers+'/NLTS_x_x_s_j.ashx',
-     data: {
-       id : options.id
-       },
-     method: 'GET', 
-     success: function(res){
-       that.setData({
-        txt_data:res.data.txt_data,
-        url_gongshi:res.data.url_gongshi,
-        url_daizhi_left:res.data.url_daizhi_left,
-        url_daizhi_right:res.data.url_daizhi_right,
-       })
-       wx.hideToast();
-     },
-     fail: function() {
-       // fail
-     },
-     complete: function() {
-       // complete
-     }
-   })
+
+
+    app.ajax.reqPOST('/Mathtool/Abilitydeal', {
+      "id": options.id
+    }, function (res) {
+      if (!res) {
+        console.log("失败！")
+        return
+      }
+      that.setData({
+        txt_data: res.txt_data,
+        url_gongshi: res.url_gongshi,
+        url_daizhi_left: res.url_daizhi_left,
+        url_daizhi_right: res.url_daizhi_right,
+      })
+      wx.hideToast();
+    });
+
+
   },
   onReady:function(){
     // 页面渲染完成

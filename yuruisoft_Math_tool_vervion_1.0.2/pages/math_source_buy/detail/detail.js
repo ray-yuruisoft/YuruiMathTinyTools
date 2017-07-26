@@ -1,44 +1,108 @@
 // pages/detail/detail.js
 var app = getApp();
 Page({
-  data:{
-    msgDetail:{},
-    hidden:true
+  data: {
+    msgDetail: {},
+    hidden: true,
+    EmailisRight: true
   },
-  onLoad:function(options){
+  local: {},
+  VEmail: function (e) {//正则验证Email
+    if (!(/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/.test(e.detail.value))) {
+      this.setData({
+        EmailisRight: false
+      })
+    }
+    else {
+      this.setData({
+        EmailisRight: true
+      })
+      this.local.Email = e.detail.value;
+    }
+  },
+  ConfirmPay: function (e) {//确认支付
+
+    if (this.data.EmailisRight && this.local.Email) {
+      var that = this;
+      wx.getStorage({
+        key: 'rd_session',
+        success: function (res) {
+
+          app.ajax.reqPOST('/Mathtool/SourceBuyPay', {
+            "yuruisoft_session": res.data,
+            "id": that.data.msgDetail.id,
+            "Email": that.local.Email
+          }, function (res) {
+            if (!res) {
+              console.log("失败！")
+              return
+            }
+            wx.requestPayment({
+              timeStamp: res.timeStamp,
+              nonceStr: res.nonceStr,
+              package: res.package,
+              signType: 'MD5',
+              paySign: res.paySign,
+              success: function (res) {
+                // success
+                console.log(res);
+              },
+              fail: function (res) {
+                // fail
+                console.log(res);
+              },
+              complete: function (res) {
+                // complete
+              }
+            });
+          }
+          )
+        },
+        fail: function (res) {
+
+        },
+        complete: function (res) {
+          // complete
+        }
+      })
+    }
+
+
+  },
+  onLoad: function (options) {
     var that = this;
     var msgDetailKey = "msgDetail" + options.id;
     that.setData({
-      hidden:false
+      hidden: false
     });
     var info = wx.getStorageSync(msgDetailKey);
     if (info) {
       that.setData({
-        msgDetail:info,
-        hidden:true
+        msgDetail: info,
+        hidden: true
       });
     } else {
-      app.ajax.req('/itdragon/findOne',{
+      app.ajax.reqPOST('/Mathtool/SourceBuyFindOne', {
         id: options.id
-      },function(res){ 
+      }, function (res) {
         that.setData({
-          msgDetail:res,
-          hidden:true
+          msgDetail: res,
+          hidden: true
         });
-        wx.setStorageSync(msgDetailKey,res);
+        wx.setStorageSync(msgDetailKey, res);
       });
     }
   },
-  onReady:function(){
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
   }
 })
