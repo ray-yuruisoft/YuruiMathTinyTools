@@ -1,6 +1,0 @@
-<block wx:for-items="{{colected_image_Data}}" wx:key="{{index}}">
-    <view style="text-align: center">       
-        <image src="{{item.savedFilePath}}" mode="widthFix" data-index="{{index}}" id="{{item.savedFilePath}}" bindtap = "mytap" bindlongtap = "my_longtap"></image>
-        <view  class="line"></view>
-    </view>
-</block>

@@ -1,6 +1,0 @@
-.input_data{
-    border: 1rpx solid;    
-}
-.item_list{
-    margin: 20rpx;
-}

@@ -1,7 +1,0 @@
-<view class = "title">该软件声明为开源软件，但开发与维护仍需成本。希望喜欢与支持该软件的朋友，能够支援下作者，金额不限多少。更多服务请访问官方网站www.yuruisoft.com</view>
-<view class = "body">
-    <text class = "text">¥</text>
-    <input class = "input" type = "digit" value = "{{_r_value}}" bindinput="_r_value"/> 
-    <button class = "button" bindtap="pay_button">立即赞助</button>
-</view>
-<view style = "margin-left : 20rpx;">备注：输入框内单位为元</view>
