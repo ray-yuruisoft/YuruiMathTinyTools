@@ -1,0 +1,10 @@
+<view class="content">
+    <view class ="gray_back"></view>
+    <view class="title">选择技巧</view>
+    <view class="list-container">
+        <import src="../../../utils/template/jisuangongju.wxml"/>
+        <block wx:for="{{life}}" wx:key="{{index}}">
+            <template is="life-item" data="{{item}}"/>
+        </block>
+    </view>
+</view>

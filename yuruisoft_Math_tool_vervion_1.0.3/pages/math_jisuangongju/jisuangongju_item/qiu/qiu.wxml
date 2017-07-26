@@ -1,0 +1,17 @@
+<view class = "_container">
+    <image mode="aspectFit" class = "_image" src="{{images_url}}"></image>
+<view class = "_line">
+    <text class ="_text">半径(r):</text>
+    <input type = "digit" value = "{{_r_value}}" bindinput="_r_value" class ="_input" />
+</view>
+<button hover-class = "button_hover" class = "button" size="default"  bindtap="click_jisuan" type="default">计   算</button>
+<view class = "_line">
+    <text>体积(V)=</text>
+    <view>{{result_1}}</view>
+</view >
+<view class = "_line">
+    <text>表面积(A)=</text>
+    <view>{{result_2}}</view>
+</view >
+    <text style = "opacity:{{error? 1: 0}}" >你的输入不正确！</text>
+</view>

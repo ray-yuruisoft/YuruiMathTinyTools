@@ -1,0 +1,30 @@
+<view class = "image_container">
+    <image class = "image" src="/images/version.png"></image>
+</view>
+<view class = "text_container">
+        <text>版本号1.0.1</text>
+</view>
+<view class="message__list">
+     <block wx:for="{{messages}}" wx:key="{{index}}">       
+          <view  class="item">
+             <view class="item-middle">
+                  <view class="item_juzhong">
+                       <text class="title">{{item.title}}</text>
+                  </view>
+            </view>
+            <view class="item-middle item_juzhong">
+                <text style = "color :gray"  class="title">{{item.contain}}</text>
+            </view>
+
+            <view class="item_right">
+                <image src="{{item.rightImage}}" class="tree_image_right"/>
+            </view>
+         </view>         
+         <view  class = "line" wx:if="{{index != 4}}"></view>
+    </block>
+</view>
+<view class = "words">
+    <view class = "text">
+             开发者：裕睿小工具自发布以后，受到很多热心朋友的推崇，在此十分感谢！但开发者在前段时间项目紧张，没有及时更新。在此跟各位致歉了！现工作步入了正轨，开发者也会及时跟进更新节奏！版本1.0.1修复了搜索栏无法点击搜索BUG；优化了公式页面友好渲染，但开发者服务器资源紧张，开发者也不愿意降低图片质量，请求图片依旧缓存时间长。如需要代码，开发者也会一如既往的支持，并提供技术指导服务。裕睿小工具支持代码模块：1、图片缓存组件（微信API不支持，开发者特有开发模块）2、JS科学计算器独立代码（已完美修复JS语言浮点运算误差，提供该独立模块）3、微信小程序支付独立代码模块。更多咨询，请致电，或留言哦！
+    </view>    
+</view>

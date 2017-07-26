@@ -1,0 +1,6 @@
+<view>
+    <view class = "item_list" wx:for="{{_data}}" wx:key="{{_data.titel}}">
+        <text>{{item.titel}}</text>
+        <input  value="{{item.input_data}}" class = "input_data" bindinput="user_input{{index}}" type = "digit"/>
+    </view>
+</view>

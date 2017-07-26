@@ -1,0 +1,17 @@
+<view class = "_container">
+    <image mode="aspectFit" class = "_image" src="{{images_url}}"></image>
+<view class = "_line">
+    <text class ="_text">底面积(D):</text>
+    <input type = "digit" value = "{{_D_value}}" bindinput="_D_value" class ="_input" />
+</view>
+<view class = "_line">
+    <text class ="_text">高(h):</text>
+    <input type = "digit" value = "{{_h_value}}" bindinput="_h_value" class ="_input" />
+</view>
+<button hover-class = "button_hover" class = "button" size="default"  bindtap="click_jisuan" type="default">计  算</button>
+<view class = "_line">
+    <text>体积(V)=</text>
+    <view>{{result}}</view>
+</view >
+    <text style = "opacity:{{error? 1: 0}}" >你的输入不正确！</text>
+</view>

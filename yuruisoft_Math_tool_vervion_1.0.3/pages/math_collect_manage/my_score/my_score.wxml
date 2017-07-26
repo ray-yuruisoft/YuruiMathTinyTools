@@ -1,0 +1,4 @@
+<view class ="name">{{user_info.nickName}}：</view>
+<view class = "body">你的积分为：{{score}}分。感谢您对本软件的支持！</view>
+<view class = "soft">裕睿软件@www.yuruisoft.com</view>
+<view class = "soft">{{time}}</view>

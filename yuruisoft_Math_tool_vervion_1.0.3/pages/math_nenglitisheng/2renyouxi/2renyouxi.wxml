@@ -1,0 +1,35 @@
+<import src="../../../utils/template/result_2player.wxml"/> 
+<template is="result_2_player" data="{{panel_Data,one_player_judge}}"/>
+<view class = "container-nengli">  
+    <view class ="player lightblue transform" style = "opacity:{{one_player_judge ? 0:1}};background-color:{{error_show_player_1 ? 'rgba(162,140,255,0.5)':''}};">
+        <progress percent = "{{time_ctrl_player_1}}" stroke-width = "5" color = "blue"/>
+        <view class = "countof">
+            {{countof_player_1}}
+        </view>
+        <view class ="text">
+            {{question_data_player_1.Question}}
+        </view>
+        <view class ="button_container">
+            <view class = "button_center">
+                <view hover="true" hover-class="button_hover" bindtap="player_1_wrong_click" class ="button red font">╳</view>
+                <view hover="true" hover-class="button_hover" bindtap="player_1_right_click" class ="button blue font">✔️</view>           
+            </view>           
+        </view>
+    </view>
+    <view class = "middle_line"></view>
+    <view class ="player orange" style = "background-color:{{error_show_player_2 ? 'rgba(162,140,255,0.5)':''}};">
+        <progress percent = "{{time_ctrl_player_2}}" stroke-width = "5" color = "blue"/>
+        <view class = "countof">
+            {{countof_player_2}}
+        </view>
+        <view class ="text">
+            {{question_data_player_2.Question}}
+        </view>
+        <view class ="button_container">
+            <view class = "button_center">
+                <view hover="true" hover-class="button_hover" bindtap="player_2_wrong_click" class ="button red font">╳</view>
+                <view hover="true" hover-class="button_hover" bindtap="player_2_right_click" class ="button blue font">✔️</view>           
+            </view>           
+        </view>
+    </view>
+</view>

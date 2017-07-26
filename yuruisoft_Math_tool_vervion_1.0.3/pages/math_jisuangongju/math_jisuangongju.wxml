@@ -1,0 +1,12 @@
+<import src="../../utils/template/jisuangongju.wxml" />
+<view class='Happy_Valley' style="display:{{isShowHap?'':'none'}}">
+  <image class="user_photo_title" src="{{user_info_local.avatarUrl}}"></image>
+  <text class="user_name_title">{{user_info_local.nickName}}</text>
+</view>
+<view class="content">
+  <view class="list-container">
+    <block wx:for="{{life}}" wx:key="{{life.title}}">
+      <template is="life-item" data="{{item}}" />
+    </block>
+  </view>
+</view>
