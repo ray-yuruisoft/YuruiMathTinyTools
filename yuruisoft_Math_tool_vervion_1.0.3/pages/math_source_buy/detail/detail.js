@@ -46,6 +46,18 @@ Page({
               success: function (res) {
                 // success
                 console.log(res);
+                if (res.errMsg == 'requestPayment:ok')//回调成功以后发起发送邮件的请求
+                {
+                  app.ajax.reqPOST('/Mathtool/SourceBuySendEmail', {
+                    "id": that.data.msgDetail.id
+                  }, function (res) {
+                    if (!res) {
+                      console.log("失败！")
+                      return
+                    }
+                    console.log("成功！");
+                  })
+                }
               },
               fail: function (res) {
                 // fail
@@ -66,8 +78,52 @@ Page({
         }
       })
     }
+  },
 
+  TestEmail: function (e) {//测试邮件能否顺利到达用户处
+    if (this.data.EmailisRight && this.local.Email) {
+      var that = this;
+      wx.getStorage({
+        key: 'EmailTest',
+        success: function (res) {
+          if (res.data == true) {
+            wx.showToast({
+              title: '测试邮件不能重复发送',
+              icon: 'success',
+              duration: 1000,
+            })
+          }
+        },
+        fail: function () {
 
+          app.ajax.reqPOST('/Mathtool/SourceBuyTestEmail', {
+            "Email": that.local.Email
+          }, function (res) {
+            if (!res) {
+              console.log("失败！")
+              return
+            }
+            wx.showToast({
+              title: '邮件已发送，请到邮箱接收',
+              icon: 'success',
+              duration: 1000,
+            })
+            wx.setStorage({
+              key: 'EmailTest',
+              data: true
+            })
+          }
+          )
+        }
+      })
+    }
+    else{
+      wx.showToast({
+        title: '邮件输入不正确！',
+        icon: 'success',
+        duration: 1000,
+      })
+    }
   },
   onLoad: function (options) {
     var that = this;
