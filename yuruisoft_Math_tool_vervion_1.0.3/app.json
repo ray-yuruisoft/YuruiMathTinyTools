@@ -73,8 +73,8 @@
     },
     {
       "pagePath": "pages/math_source_buy/math_source_buy",
-      "iconPath": "images/tab_dynamic_normal.png",
-      "selectedIconPath": "images/tab_dynamic_selected.png",
+      "iconPath": "images/tab_shopping_normal.png",
+      "selectedIconPath": "images/tab_shopping_selected.png",
       "text": "资源内购"
     },
       {
