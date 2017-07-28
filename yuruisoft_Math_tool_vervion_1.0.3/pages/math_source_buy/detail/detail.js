@@ -37,6 +37,7 @@ Page({
               console.log("失败！")
               return
             }
+            var wx_out_trade_no = res.wx_out_trade_no
             wx.requestPayment({
               timeStamp: res.timeStamp,
               nonceStr: res.nonceStr,
@@ -49,7 +50,8 @@ Page({
                 if (res.errMsg == 'requestPayment:ok')//回调成功以后发起发送邮件的请求
                 {
                   app.ajax.reqPOST('/Mathtool/SourceBuySendEmail', {
-                    "id": that.data.msgDetail.id
+                    "id": that.data.msgDetail.id,
+                    "orderName": wx_out_trade_no
                   }, function (res) {
                     if (!res) {
                       console.log("失败！")
@@ -99,25 +101,31 @@ Page({
           app.ajax.reqPOST('/Mathtool/SourceBuyTestEmail', {
             "Email": that.local.Email
           }, function (res) {
-            if (!res) {
-              console.log("失败！")
+            if (!res || res.error == false) {
+              wx.showToast({
+                title: '其他原因，邮件不能正常发送',
+                icon: 'success',
+                duration: 1000,
+              })
               return
             }
-            wx.showToast({
-              title: '邮件已发送，请到邮箱接收',
-              icon: 'success',
-              duration: 1000,
-            })
-            wx.setStorage({
-              key: 'EmailTest',
-              data: true
-            })
+            else {
+              wx.showToast({
+                title: '邮件已发送，请到邮箱接收',
+                icon: 'success',
+                duration: 1000,
+              })
+              wx.setStorage({
+                key: 'EmailTest',
+                data: true
+              })
+            }
           }
           )
         }
       })
     }
-    else{
+    else {
       wx.showToast({
         title: '邮件输入不正确！',
         icon: 'success',
