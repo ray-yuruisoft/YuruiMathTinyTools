@@ -1,13 +1,22 @@
-.line{
-    height: 1rpx;
-    width:100%;
-    background-color: #E0E1E2;
+.line {
+  height: 2rpx;
+  width: 100%;
+  background-color: #e0e1e2;
 }
-.colected_image{
-    width: 50rpx;
-    height: 50rpx;
+
+.colected_image {
+  width: 50rpx;
+  height: 50rpx;
 }
-.is_null{
-    text-align: center;
-    margin: 50rpx;
+
+.is_null {
+  text-align: center;
+  margin: 50rpx;
+}
+
+.currentPercent {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

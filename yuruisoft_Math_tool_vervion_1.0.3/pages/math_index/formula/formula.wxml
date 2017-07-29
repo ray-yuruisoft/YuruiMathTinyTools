@@ -1,6 +1,14 @@
 <view wx:if="{{page_if}}">
+  <view class="currentPercent">
+    <progress style="width: 92%;" percent="{{CurrentPercent}}" color="#cccccc" activeColor="#12b7f5" show-info="true" />
+     <image style="width: 8%; opacity:{{isloading?1:0}}" class="colected_image" src="../../../images/loading.gif"></image>
+  </view>
+
   <view wx:for="{{imgList}}" wx:key="{{imgList[index]._id}}">
-    <image style="opacity:{{item.colected?1:0}}" class="colected_image" src="/images/colected.png"></image>
+    <view>
+      <image style="opacity:{{item.colected?1:0}}" class="colected_image" src="/images/colected.png"></image>
+      <text style="float: right">{{item.titleName}}</text>
+    </view>
     <view style="text-align: center">
       <image src="{{ item.loaded?item.url:item.breviary_url }}" mode="widthFix" data-index="{{index}}" id="{{item.url}}" bindtap="mytap" bindlongtap="my_longtap"></image>
       <view class="line"></view>

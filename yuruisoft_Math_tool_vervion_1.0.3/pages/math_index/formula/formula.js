@@ -10,6 +10,7 @@ Page({
     }
   },
   data: {//页面渲染所需数据
+    isloading: 0,
     page_if: true,
     lastTapDiffTime: 0,
     formulaID: -1,
@@ -105,7 +106,7 @@ Page({
                               });
                               var temp = that.data.result.slice(0, that.data.result.length);
                               var Temp = that.data.imgList.slice(0, that.data.imgList.length);
-                              for (var i = 0; i < temp.length; i++) {
+                              for (var i = 0; i < Temp.length; i++) {
                                 Temp[i].colected = temp[i].colected;
                               }
                               that.setData({
@@ -189,26 +190,27 @@ Page({
     //初始化图片预加载组件，并指定统一的加载完成回调
     this.imgLoader = new ImgLoader(this, this.imageOnLoad.bind(this));
     var that = this;
-    this.setData({ formulaID: options.id });
+    this.setData({
+      formulaID: options.id,
+      isloading: 1
+    });
     wx.showNavigationBarLoading(); //在标题栏中显示加载
-    
     app.ajax.reqPOST('/Mathtool/Searchdeal', {
-        "Searchdata": options.id
-      }, function (res) {
-        if(!res)
-        {
-          console.log("失败！")
-          return
-        }       
-        that.LoadPage(that, res); //请求数据完成后，加载页面
-      });
+      "Searchdata": options.id
+    }, function (res) {
+      if (!res) {
+        console.log("失败！")
+        return
+      }
+      that.LoadPage(that, res); //请求数据完成后，加载页面
+    });
   },
 
   //请求数据完成后，加载页面
   LoadPage: function (that, res) {
     that.setData({
       result: rpn.storage_deal(res.results),
-      page_if: res.error,
+      page_if: res.error
     });
     for (var a = 0; a < res.results.length; a++)//做预览使用的
     {
@@ -227,22 +229,28 @@ Page({
    */
   TempData: {//图片缓存使用----临时数据
     Results_count: 0,//放入图片缓存的计数
-    pageNum : 1, // 当前页数 
-    pageSize : 6,// 当前页尺寸
-    CanonPullUp:false
-  },    
+    pageNum: 1, // 当前页数 
+    pageSize: 6,// 当前页尺寸
+    CanonPullUp: false
+  },
   onReachBottom: function () {//上拉----加载数据，依次加载图片   
-    if (this.TempData.CanonPullUp) {  
+    if (this.TempData.CanonPullUp) {
       wx.showNavigationBarLoading(); //在标题栏中显示加载
+      this.setData({
+        isloading: 1
+      })
       this.TempData.CanonPullUp = false;//将上拉加载锁定
       if (this.TempData.pageNum * this.TempData.pageSize < this.data.result.length) {
         this.TempData.pageNum++;
         this.TempData.TempResults = (this.data.result.length < this.data.result.pageSize) ? this.data.result : this.data.result.slice(0, this.TempData.pageSize * this.TempData.pageNum);//初始页面的数据
         //加载图片，这里使用递归，图片按次序依次下载，图片下完后退出
-        this.imgLoader.load(this.TempData.TempResults[(this.TempData.pageNum - 1) * this.TempData.pageSize].image_url);   
+        this.imgLoader.load(this.TempData.TempResults[(this.TempData.pageNum - 1) * this.TempData.pageSize].image_url);
       }
       else {
         wx.hideNavigationBarLoading(); //完成停止加载
+        this.setData({
+          isloading: 0
+        })
         // wx.showToast({
         //   title: '最后了哈',
         // })
@@ -251,13 +259,16 @@ Page({
   },
   onPullDownRefresh: function () {//下拉----刷新数据,加载所有图片
     wx.showNavigationBarLoading(); //在标题栏中显示加载
+    this.setData({
+      isloading: 1
+    })
     this.TempData.CanonPullUp = false;
     var that = this;
-    this.data.imgList=[];
+    this.data.imgList = [];
     this.TempData.Results_count = 0;
     //从第一个排队加载
     this.imgLoader.load(this.data.result[0].image_url, this.imageOnLoadAll.bind(this));
-  
+
   },
   imageOnLoadAll(err, data) {//下拉回调----刷新-加载所有-递归
 
@@ -275,6 +286,9 @@ Page({
       this.TempData.Results_count = 0;
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
+      this.setData({
+        isloading: 0
+      })
     }
   },
   imageOnLoad(err, data) {//上拉回调----加载-递归
@@ -287,36 +301,48 @@ Page({
 
     this.TempData.Results_count++;//递归推移标志
     if ((this.TempData.Results_count < this.TempData.pageSize) && (this.TempData.TempResults.length > start + this.TempData.Results_count)) {
-        this.imgLoader.load(this.TempData.TempResults[start + this.TempData.Results_count].image_url);
+      this.imgLoader.load(this.TempData.TempResults[start + this.TempData.Results_count].image_url);
     }
     else//所有图片加载完毕
     {
       this.TempData.Results_count = 0;
       this.TempData.CanonPullUp = true;//解锁，允许下次下拉刷新
       wx.hideNavigationBarLoading(); //完成停止加载
+      this.setData({
+        isloading: 0
+      })
     }
   },
   getImgListData(res) {//回调函数调用----数据格式化
-    if (this.data.imgList != undefined)
+    if (this.data.imgList != undefined) {
+      this.setData({
+        CurrentPercent: Math.floor((this.data.imgList.length + 1) / this.data.result.length * 100)
+      })
+      console.log(this.data.CurrentPercent)
       return this.data.imgList.concat(res.map(item => {
         return {
           _id: item._id,
           colected: item.colected,
           url: item.image_url,
-          breviary_url: '../../../images/breviary_images/' + item.image_url.split('/')[item.image_url.split('/').length - 1],//返回缩略图
-          loaded: true
+          loaded: true,
+          titleName: parseInt(item.image_url.slice(item.image_url.lastIndexOf('_') + 1, item.image_url.indexOf('.png'))) + 1
         }
       }))
-    else
+    }
+    else {
+      this.setData({
+        CurrentPercent: Math.floor(1 / this.data.result.length)
+      })
       return res.map(item => {
         return {
           _id: item._id,
           colected: item.colected,
           url: item.image_url,
-          breviary_url: '../../../images/breviary_images/' + item.image_url.split('/')[item.image_url.split('/').length - 1],//返回缩略图
-          loaded: true
+          loaded: true,
+          titleName: parseInt(item.image_url.slice(item.image_url.lastIndexOf('_') + 1, item.image_url.indexOf('.png'))) + 1
         }
       })
+    }
   },
   onReady: function () {
     // 页面渲染完成

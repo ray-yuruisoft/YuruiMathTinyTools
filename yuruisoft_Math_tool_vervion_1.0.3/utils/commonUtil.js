@@ -13,21 +13,6 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-var rootDocment = 'https://www.itit123.cn';
-function req(url, data, cb) {//Post请求
-  wx.request({
-    url: rootDocment + url,
-    data: data,
-    method: 'POST',
-    header: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    success: function (res) {
-      return typeof cb == "function" && cb(res.data)
-    },
-    fail: function () {
-      return typeof cb == "function" && cb(false)
-    }
-  })
-}
 
 function reqPOST(url, data, cb) {//Get请求
   wx.request({
@@ -50,6 +35,5 @@ function reqPOST(url, data, cb) {//Get请求
 
 module.exports = {
   formatTime: formatTime,   //时间格式化
-  req: req,                 //Post请求
   reqPOST: reqPOST            //Get请求
 }

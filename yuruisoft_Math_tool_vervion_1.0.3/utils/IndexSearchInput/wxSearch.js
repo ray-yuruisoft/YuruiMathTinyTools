@@ -1,4 +1,3 @@
-var app = getApp();//这里依赖于请求函数
 var __keysColor = [];
 var __mindKeys = [];
 function initColors(colors) {
@@ -56,7 +55,7 @@ function wxSearchInput(e, that, callBack) {//这里依赖于请求函数
   }
   FlagSetOut = setTimeout(function () { 
 
-    app.ajax.reqPOST('/Mathtool/SearchKeydeal', {
+    getApp().ajax.reqPOST('/Mathtool/SearchKeydeal', {
       "Searchkey": key_data_Temp
     }, function (res) {
       if (!res) {//失败直接返回        
