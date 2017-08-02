@@ -17,7 +17,7 @@ function formatNumber(n) {
 function reqPOST(url, data, cb) {//Get请求
   wx.request({
     //url: getApp().data.servsers + url,
-    url: "http://localhost:4943" + url,
+    url: "https://www.yuruisoft.com" + url,
     data : data,
     method:'POST',
     header: {

@@ -71,8 +71,11 @@ Page({
             duration: 10000
           })
           //开启下载文件，异步
+
+          var urlTemp ="https" + e.currentTarget.id.slice(4, e.currentTarget.id.length)
+          
           wx.downloadFile({
-            url: e.currentTarget.id,
+            url: urlTemp,
             success: function (res) {
               //下载成功后存储文件
               wx.saveFile({

@@ -5,7 +5,7 @@ var wxSearch = require('/utils/IndexSearchInput/wxSearch.js')
 
 App({
   data: {
-    servsers: "https://www.yuruisoft.com/yuruisoft_XCX/",
+    servsers: "https://www.yuruisoft.com/MathTool",
     require_message_data: '../../utils/IndexSearchInput/wxSearch.js',
     require_kexuejisuanqi_data: '../../../utils/kexuejisuanqi.js',
     require_fudianshu_bug: '../../../utils/fudianshu_bug.js'
